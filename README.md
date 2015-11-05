@@ -1,7 +1,7 @@
 #  ICN.Bg Docker Workshop
 
 
-## Edit: The php-redis example doesn't work on docker 1.9. Working with 1.8.2.
+## Edit: The php-redis example doesn't work on docker 1.9. Additional info provided after the 1.8.2 example
 
 ### Docker CLI
 
@@ -82,6 +82,7 @@ Nodejs Hello:v2:
 
 PHP/Redis Guestbook:
 
+        ### Works on 1.8.2 (1.8.X)
 	cd ../php-redis/
 	cat Dockerfile
 	docker build -t guestbook .
@@ -90,6 +91,15 @@ PHP/Redis Guestbook:
 	docker run -d --name guestbook -p 80:80 guestbook
 	curl localhost:80
 	docker logs guestbook
+
+        ### For 1.9+
+        cd ../php-redis/
+        docker network create --subnet=10.10.10.0/24 guestbook
+        cat Dockerfile
+        docker build -t guestbook .
+        docker run -d --name redis-master --net=guestbook redis
+        docker run -d --name redis-slave --net=guestbook redis redis-server --slaveof redis-master 6379
+        docker run -d --name guestbook -p 80:80 --net=guestbook guestbook
 
 	---
 	ICNApps
