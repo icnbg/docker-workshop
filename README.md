@@ -68,6 +68,7 @@ Nodejs Hello:v2:
 	docker login -u workshop -e support@icn.bg docker.icnhost.net:5000
 	// Enter password
 	docker tag hello:v2 docker.icnhost.net:5000/workshop/hello:v2
+	docker push docker.icnhost.net:5000/workshop/hello:v2
 
 	---
 	Web UI
