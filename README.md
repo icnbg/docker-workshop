@@ -82,7 +82,8 @@ Nodejs Hello:v2:
 
 PHP/Redis Guestbook:
 
-        ### Works on 1.8.2 (1.8.X)
+### Works on 1.8.2 (1.8.X)
+
 	cd ../php-redis/
 	cat Dockerfile
 	docker build -t guestbook .
@@ -92,7 +93,8 @@ PHP/Redis Guestbook:
 	curl localhost:80
 	docker logs guestbook
 
-        ### For 1.9+
+### For 1.9+
+
         cd ../php-redis/
         docker network create --subnet=10.10.10.0/24 guestbook
         cat Dockerfile
