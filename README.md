@@ -1,5 +1,8 @@
 #  ICN.Bg Docker Workshop
 
+
+## Edit: The php-redis example doesn't work on docker 1.9. Working with 1.8.2.
+
 ### Docker CLI
 
 	https://docs.docker.com/v1.8/reference/commandline/run/
