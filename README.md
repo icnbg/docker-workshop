@@ -116,3 +116,14 @@ PHP/Redis Guestbook:
 	4. Create redis-slave SVC
 	5. Create guestbook RC
 	6. Create guestbook SVC
+
+---
+
+### Immutable Servers/Infrastructure
+
+Immutable Servers are a deployment model that mandates that no application updates, security patches, or configuration changes happen on production systems. If any of these layers needs to be modified, a new image is constructed, pushed and cycled into production. When you deploy an update to your application, you should create new instances (servers and/or containers) and destroy the old ones, instead of trying to upgrade them in-place. Once your application is running, you don’t touch it! The benefits come in the form of repeatability, reduced management overhead, easier rollbacks, etc.
+
+
+### Microservices
+
+A microservice is an isolated, loosely-coupled unit of development that works on a single concern. This is similar to the old "Unix" way of doing things: do one thing, and do it well. Matters such as how to "combine" whatever is provided by the service are left to higher layers or to policy. This usually means that microservices tend to avoid interdependencies: if one microservice has a hard requirement for other microservices, then you should ask yourself if it makes sense to make them all part of the same unit.
