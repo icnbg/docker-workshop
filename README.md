@@ -28,7 +28,7 @@
 
 ### Examples
 
-	git clone https://github.com/plamer/workshop.git
+	git clone https://github.com/icnbg/docker-workshop.git
 	
 Nodejs Hello:v1:
 
@@ -68,10 +68,10 @@ Nodejs Hello:v2:
 
 	---
 	v2 - ICNApps
-	docker login -u workshop -e support@icn.bg docker.icnhost.net:5000
+	docker login -u workshop -e support@icn.bg registry.icnapp.net
 	// Enter password
-	docker tag hello:v2 docker.icnhost.net:5000/workshop/hello:v2
-	docker push docker.icnhost.net:5000/workshop/hello:v2
+	docker tag hello:v2 registry.icnapp.net/workshop/hello:v2
+	docker push registry.icnapp.net/workshop/hello:v2
 
 	---
 	Web UI
@@ -105,8 +105,8 @@ PHP/Redis Guestbook:
 
 	---
 	ICNApps
-	docker tag guestbook docker.icnhost.net:5000/workshop/guestbook
-	docker push docker.icnhost.net:5000/workshop/guestbook
+	docker tag guestbook registry.icnapp.net/workshop/guestbook
+	docker push registry.icnapp.net/workshop/guestbook
 
 	---
 	Web UI
