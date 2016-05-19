@@ -1,23 +1,21 @@
 #  ICN.Bg Docker Workshop
 
 
-## Edit: The php-redis example doesn't work on docker 1.9. Additional info provided after the 1.8.2 example
-
 ### Docker CLI
 
-	https://docs.docker.com/v1.8/reference/commandline/run/
-	https://docs.docker.com/v1.8/reference/commandline/build/
-	https://docs.docker.com/v1.8/reference/commandline/exec/
-	https://docs.docker.com/v1.8/reference/commandline/images/
-	https://docs.docker.com/v1.8/reference/commandline/login/
-	https://docs.docker.com/v1.8/reference/commandline/logs/
-	https://docs.docker.com/v1.8/reference/commandline/ps/
-	https://docs.docker.com/v1.8/reference/commandline/pull/
-	https://docs.docker.com/v1.8/reference/commandline/push/
-	https://docs.docker.com/v1.8/reference/commandline/rm/
-	https://docs.docker.com/v1.8/reference/commandline/rmi/
-	https://docs.docker.com/v1.8/reference/commandline/start/
-	https://docs.docker.com/v1.8/reference/commandline/stop/
+	https://docs.docker.com/engine/reference/commandline/run/
+	https://docs.docker.com/engine/reference/commandline/build/
+	https://docs.docker.com/engine/reference/commandline/exec/
+	https://docs.docker.com/engine/reference/commandline/images/
+	https://docs.docker.com/engine/reference/commandline/login/
+	https://docs.docker.com/engine/reference/commandline/logs/
+	https://docs.docker.com/engine/reference/commandline/ps/
+	https://docs.docker.com/engine/reference/commandline/pull/
+	https://docs.docker.com/engine/reference/commandline/push/
+	https://docs.docker.com/engine/reference/commandline/rm/
+	https://docs.docker.com/engine/reference/commandline/rmi/
+	https://docs.docker.com/engine/reference/commandline/start/
+	https://docs.docker.com/engine/reference/commandline/stop/
 
 
 
@@ -36,7 +34,7 @@ Nodejs Hello:v1:
 	docker pull redis && docker pull php:5-apache && docker pull node
 	docker images
 
-	cd workshop
+	cd docker-workshop
 	cd hello_v1
 	npm install
 	export EXPOSE_PORT=8080
@@ -68,7 +66,7 @@ Nodejs Hello:v2:
 
 	---
 	v2 - ICNApps
-	docker login -u workshop -e support@icn.bg registry.icnapp.net
+	docker login -u workshop registry.icnapp.net
 	// Enter password
 	docker tag hello:v2 registry.icnapp.net/workshop/hello:v2
 	docker push registry.icnapp.net/workshop/hello:v2
@@ -77,45 +75,6 @@ Nodejs Hello:v2:
 	Web UI
 	1. Create RC from our image (already pushed to the registry)
 	2. Create Service for our RC
-
-
-
-PHP/Redis Guestbook:
-
-### Works on 1.8.2 (1.8.X)
-
-	cd ../php-redis/
-	cat Dockerfile
-	docker build -t guestbook .
-	docker run -d --name redis-master redis
-	docker run -d --name redis-slave redis redis-server --slaveof redis-master 6379
-	docker run -d --name guestbook -p 80:80 guestbook
-	curl localhost:80
-	docker logs guestbook
-
-### For 1.9+
-
-        cd ../php-redis/
-        docker network create --subnet=10.10.10.0/24 guestbook
-        cat Dockerfile
-        docker build -t guestbook .
-        docker run -d --name redis-master --net=guestbook redis
-        docker run -d --name redis-slave --net=guestbook redis redis-server --slaveof redis-master 6379
-        docker run -d --name guestbook -p 80:80 --net=guestbook guestbook
-
-	---
-	ICNApps
-	docker tag guestbook registry.icnapp.net/workshop/guestbook
-	docker push registry.icnapp.net/workshop/guestbook
-
-	---
-	Web UI
-	1. Create redis-master RC
-	2. Create redis-master SVC
-	3. Create redis-slave (overwrite standart cmd)
-	4. Create redis-slave SVC
-	5. Create guestbook RC
-	6. Create guestbook SVC
 
 ---
 
