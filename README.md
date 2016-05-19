@@ -31,7 +31,7 @@
 Nodejs Hello:v1:
 
 	docker images
-	docker pull redis && docker pull php:5-apache && docker pull node
+	pull node
 	docker images
 
 	cd docker-workshop
